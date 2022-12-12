@@ -10,6 +10,9 @@ import { MaterialModule } from './material.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GraphQLModule } from './graphql.module';
+import { AuthService } from './services/auth.service';
+import { RegisterQL } from './queries/registerQL';
+import { LoginQL } from './queries/loginQL';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { GraphQLModule } from './graphql.module';
     MaterialModule,
     GraphQLModule
   ],
-  providers: [],
+  providers: [AuthService, LoginQL, RegisterQL],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

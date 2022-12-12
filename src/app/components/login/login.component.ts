@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs/operators';
+import { LoginQL } from 'src/app/queries/loginQL';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,17 +15,15 @@ export class LoginComponent implements OnInit {
   };
 
   errorMessage: string = '';
-  constructor(
-    private _authService: AuthService
-  ) { }
+
+  constructor(private _login: LoginQL) { }
 
   ngOnInit() {
     this.model = { username: '', password: '' };
   }
-
   onSubmit() {
     this.errorMessage = '';
-    this._authService.login(this.model.username, this.model.password)
+    this._login.mutate(this.model)
       .subscribe(c => {
         console.log({ c })
       });

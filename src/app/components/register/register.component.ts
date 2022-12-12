@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { RegisterQL } from 'src/app/queries/registerQL';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
   };
   errorMessage: string = '';
 
-  constructor(private _acctService: AuthService) { }
+  constructor(private _register: RegisterQL) { }
 
   ngOnInit() {
     this.model = { name: '', email: '', password: '', password_confirmation: '' };
@@ -24,13 +25,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.errorMessage = '';
-    this._acctService.register(this.model)
-      .pipe(
-        map((r) => {
-          console.log({ r });
-          return this._acctService.login(this.model.email, this.model.password);
-        })
-      )
+    this._register.mutate(this.model)
       .subscribe(c => console.log({ c }));
   }
 }
