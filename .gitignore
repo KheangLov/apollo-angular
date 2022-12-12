@@ -10,7 +10,9 @@
 /node_modules
 npm-debug.log
 yarn-error.log
-/.yarn
+.yarn/cache
+./.yarn
+/.yarn/cache
 
 # IDEs and editors
 .idea/
