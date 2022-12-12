@@ -10,9 +10,8 @@
 /node_modules
 npm-debug.log
 yarn-error.log
-.yarn/cache
-./.yarn
 /.yarn/cache
+/.yarn/install-state.gz
 
 # IDEs and editors
 .idea/
