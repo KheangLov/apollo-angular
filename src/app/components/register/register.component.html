@@ -1,1 +1,68 @@
-<p>register works!</p>
+<h2>Register</h2>
+<form #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && onSubmit()">
+  <p style="color: red; font-weight: 600">{{ errorMessage }}</p>
+  <div class="form-group">
+    <label for="name">Full Name</label>
+    <input
+      type="text"
+      name="name"
+      [(ngModel)]="model.name"
+      #name="ngModel"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': registerForm.submitted && name.invalid }"
+      required
+    />
+    <div *ngIf="registerForm.submitted && name.invalid" class="invalid-feedback">
+      <div *ngIf="name.errors && name.errors['required']">Name is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="model.email"
+      #email="ngModel"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': registerForm.submitted && email.invalid }"
+      required
+    />
+    <div *ngIf="registerForm.submitted && email.invalid" class="invalid-feedback">
+      <div *ngIf="email.errors && email.errors['required']">Email is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="model.password"
+      #password="ngModel"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': registerForm.submitted && password.invalid }"
+      required
+    />
+    <div *ngIf="registerForm.submitted && password.invalid" class="invalid-feedback">
+      <div *ngIf="password.errors && password.errors['required']">Password is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password_confirmation">Password Confirmation</label>
+    <input
+      type="password"
+      name="password_confirmation"
+      [(ngModel)]="model.password_confirmation"
+      #password_confirmation="ngModel"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': registerForm.submitted && password_confirmation.invalid }"
+      required
+    />
+    <div *ngIf="registerForm.submitted && password_confirmation.invalid" class="invalid-feedback">
+      <div *ngIf="password_confirmation.errors && password_confirmation.errors['required']">Password Confirmation is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">Register</button>
+    <a routerLink="/login" class="btn btn-link">Cancel</a>
+  </div>
+</form>
